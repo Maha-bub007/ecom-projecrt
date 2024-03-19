@@ -25,3 +25,7 @@ Route::get('/privace-police',[homecontroller::class,'policy']);
 Route::get('/ceatagory-product',[homecontroller::class,'ceatagory']);
 Route::get('/contactus',[homecontroller::class,'contactus']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
