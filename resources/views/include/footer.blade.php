@@ -137,7 +137,8 @@
         <div class="container">
             <p class="footer__bottom-text">
                 © 2024, All rights reserved
-                <strong class="text-brand">Nitto Mart</strong>
+                <strong class="text-brand">Xcellence Find & <span class="my-name">Design by Mahabub Alom </span></strong>
+                
             </p>
         </div>
     </div>

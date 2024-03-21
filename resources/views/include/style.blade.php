@@ -29,7 +29,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('frontend/form/vendor/css-hamburgers/hamburgers.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('frontend/formvendor/select2/select2.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('frontend/form/vendor/select2/select2.min.css')}}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('frontend/form/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('frontend/form/css/main.css')}}">

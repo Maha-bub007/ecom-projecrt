@@ -1,6 +1,6 @@
 /*common css start*/
 :root{
-    --primary: #38a538;
+    --primary: #58A399;
     --category-bg: #217e24;
 }
 * {
@@ -98,7 +98,7 @@
 .search-form-outer .search-form input {
     width: 600px;
     height: 50px;
-    border: 2px solid var(--category-bg);
+    border: 2px solid #58A399;
     border-radius: 5px;
 }
 
@@ -107,7 +107,8 @@ position: absolute;
 top: 50%;
 transform: translateY(-50%);
 font-size: 17px;
-color: #7e7e7e;
+/* color: #7e7e7e; */
+color: #58A399;
 height: 100%;
 right: 0;
 padding: 10px;
@@ -391,7 +392,8 @@ background: transparent;
 
 /* Header bootom section css start */
 .header__bottom-wrapper {
-    background: var(--primary);
+    /* background:#9CAFAA; */
+    background: #58A399;
 }
 
 .header__bottom-outer {
@@ -409,7 +411,8 @@ background: transparent;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--category-bg);
+    /* background: #58A399; */
+    background:#50727B;
     cursor: pointer;
 }
 
@@ -505,11 +508,11 @@ background: transparent;
 
 .header__category-list-item-link:hover {
     color: #fff;
-    background-color: var(--primary);
+    background-color: #58A399;
 }
 
 .header__category-list-item.item-has-submenu:hover .header__category-list-item-link {
-    background: var(--primary);
+    background: #58A399;
     color: #fff;
 }
 
@@ -555,7 +558,7 @@ background: transparent;
 }
 
 .header__category-submenu-item-link:hover{
-    color: var(--primary);
+    color: #58A399;
 }
 /* Header bootom section css End */
 
@@ -3269,5 +3272,15 @@ margin-left: 10px;
 .thank-you-btn-inner:hover {
     background: transparent;
     color: var(--primary);
+    
+}
+.my-name{
+    color: #87b8db;
+    transition: 1s;
+    
+}
+.my-name:hover{
+    transform: scale(1.3);
+    color: white;
 }
 /*Thank you page css End*/

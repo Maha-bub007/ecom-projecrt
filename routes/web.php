@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\homecontroller;
-
+use  App\Http\Controllers\adminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,18 +14,20 @@ use  App\Http\Controllers\homecontroller;
 |
 */
 
-Route::get('/',[homecontroller::class,'home']);
-Route::get('/products-datils',[homecontroller::class,'datilspage']);
-Route::get('/products-shop',[homecontroller::class,'products_shop']);
-Route::get('/products-process',[homecontroller::class,'return']);
-Route::get('/products-viewall',[homecontroller::class,'viewall']);
-Route::get('/products-viewcart',[homecontroller::class,'viewcart']);
-Route::get('/products-checkout',[homecontroller::class,'checkout']);
-Route::get('/privace-police',[homecontroller::class,'policy']);
-Route::get('/ceatagory-product',[homecontroller::class,'ceatagory']);
-Route::get('/contactus',[homecontroller::class,'contactus']);
+Route::get('/', [homecontroller::class, 'home']);
+Route::get('/products-datils', [homecontroller::class, 'datilspage']);
+Route::get('/products-shop', [homecontroller::class, 'products_shop']);
+Route::get('/products-process', [homecontroller::class, 'return']);
+Route::get('/products-viewall', [homecontroller::class, 'viewall']);
+Route::get('/products-viewcart', [homecontroller::class, 'viewcart']);
+Route::get('/products-checkout', [homecontroller::class, 'checkout']);
+Route::get('/privace-police', [homecontroller::class, 'policy']);
+Route::get('/ceatagory-product', [homecontroller::class, 'ceatagory']);
+Route::get('/contactus', [homecontroller::class, 'contactus']);
 
 
+//backend routes....
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/login', [adminController::class, 'login']);
+Route::post('/admin/login-acess', [adminController::class, 'login_check']);
+Route::get('/admin/Dashboard', [adminController::class, 'dashboard']);
