@@ -15,7 +15,7 @@ class adminController extends Controller
     {
         $email = $admin_login->email;
         $password = $admin_login->password;
-        if (Auth::attempt(['email' => $email, 'password' => $password, ])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'role'=> 1])) {
             return redirect('/admin/Dashboard');
         } else {
             return redirect()->back();
@@ -24,7 +24,7 @@ class adminController extends Controller
     public function dashboard()
     {
         if (Auth::user()) {
-            if (Auth::user()) {
+            if (Auth::user()->role == 1) {
                 return view('backend.admin.dashboard');
             } else {
                 return redirect('/admin/login');

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\homecontroller;
 use  App\Http\Controllers\adminController;
+use App\Http\Controllers\categoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +28,23 @@ Route::get('/ceatagory-product', [homecontroller::class, 'ceatagory']);
 Route::get('/contactus', [homecontroller::class, 'contactus']);
 
 
-//backend routes....
+//backend routes login....
 Auth::routes();
 Route::get('/admin/login', [adminController::class, 'login']);
 Route::post('/admin/login-acess', [adminController::class, 'login_check']);
 Route::get('/admin/Dashboard', [adminController::class, 'dashboard']);
+
+//backend routes category....
+Route::get('/admin/category/addNew',[categoryController::class,'CategoryAddNew']);
+Route::post('/admin/category/store',[categoryController::class,'CategoryStore']);
+Route::get('/admin/category/list',[categoryController::class,'Categorylist']);
+Route::get('/admin/category/delete/{id}',[categoryController::class,'categoryDelete']);
+Route::get('/admin/category/edit/{id}',[categoryController::class,'categoryedit']);
+Route::post('/admin/category/update/{id}',[categoryController::class,'categoryupdate']);
+
+Route::get('/admin/sub-category/addNew',[categoryController::class,'subCategoryAddNew']);
+Route::post('/admin/sub-category/store',[categoryController::class,'subCategoryStore']);
+Route::get('/admin/sub-category/list',[categoryController::class,'subCategorylist']);
+Route::get('/admin/sub-category/delete/{id}',[categoryController::class,'subcategoryDelete']);
+Route::get('/admin/sub-category/edit/{id}',[categoryController::class,'subcategoryedit']);
+Route::post('/admin/sub-category/update/{id}',[categoryController::class,'subcategoryupdate']);
