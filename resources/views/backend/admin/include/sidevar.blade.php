@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">controll panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -53,13 +53,36 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{url('/admin/sub-category/list')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Item</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url('/admin/sub-category/addNew')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add new</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                product
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/admin/product/list')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Item</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/admin/product/addNew')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add new</p>
                 </a>

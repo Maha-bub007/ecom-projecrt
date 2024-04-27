@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\homecontroller;
 use  App\Http\Controllers\adminController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\productController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,10 @@ Route::get('/admin/sub-category/list',[categoryController::class,'subCategorylis
 Route::get('/admin/sub-category/delete/{id}',[categoryController::class,'subcategoryDelete']);
 Route::get('/admin/sub-category/edit/{id}',[categoryController::class,'subcategoryedit']);
 Route::post('/admin/sub-category/update/{id}',[categoryController::class,'subcategoryupdate']);
+
+Route::get('/admin/product/addNew',[productController::class,'productAddNew']);
+Route::post('/admin/product/store',[productController::class,'productStore']);
+Route::get('/admin/product/list',[productController::class,'productlist']);
+Route::get('/admin/product/delete/{id}',[productController::class,'productDelete']);
+Route::get('/admin/product/edit/{id}',[productController::class,'productedit']);
+Route::post('/admin/product/update/{id}',[productController::class,'productupdate']);

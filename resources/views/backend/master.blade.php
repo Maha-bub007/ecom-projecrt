@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Dashboard</title>
+  <title>Ecomerce website</title>
   @include('backend.admin.include.hader');
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -15,7 +15,7 @@
   <!-- Main Sidebar Container -->
   @include('backend.admin.include.sidevar');
   <div class="content-wrapper">
-  @yield('contant');
+  @yield('contant')
   </div>
 
   @include('backend.admin.include.footer');
