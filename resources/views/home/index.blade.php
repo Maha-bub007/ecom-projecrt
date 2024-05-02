@@ -1,4 +1,4 @@
-@extends('master');
+@extends('master')
 @section('contant')
 <section class="home-slider-section">
     <div class="container">
@@ -497,5 +497,5 @@
     </div>
 </section>
 <!-- /Popular Product -->
-@endsection;
+@endsection
 

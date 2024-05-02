@@ -1,4 +1,4 @@
-@extends('backend.master')
+{{-- @extends('backend.master')
 @section('contant')
     <div class="container">
         <div class="card card-primary">
@@ -36,4 +36,4 @@
             </form>
         </div>
     </div>
-@endsection
+@endsection --}}

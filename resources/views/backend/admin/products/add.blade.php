@@ -22,13 +22,31 @@
                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
                         </select>
-
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Sub Category</label>
+                        <select name="subcat_id" id="subcat_id" class="form-control">
+                            @foreach ($subproducts as $subproduct)
+                                <option value="{{ $subproduct->id }}">{{ $subproduct->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Quantity</label>
                         <input type="number" class="form-control" id="name" name="quantity"
                             placeholder="Enter quantity" required>
                     </div>
+                    <div class="form-group" id="colors">
+                        <label for="exampleInputEmail1">Add color</label>
+                        <input type="text" class="form-control" id="color" name="color[]"placeholder="Enter color" >
+                    </div>
+                    <button id="add_color" class="btn btn-info">Add More Color</button>
+                    <div class="form-group" id="sizes">
+                        <label for="exampleInputEmail1">Add size</label>
+                        <input type="text" class="form-control" id="size" name="size[]"
+                            placeholder="Enter size" >
+                    </div>
+                    <button id="add_size" class="btn btn-info">Add More size</button>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Buy price</label>
                         <input type="number" class="form-control" id="name" name="buy_price"
@@ -80,7 +98,20 @@
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="exampleInputFile" name="image"
-                                    accept="image/*">
+                                    accept="image/*" required>
+                                <label class="custom-file-label" for="exampleInputFile">Choose photo</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Input GallaryImage</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="GallaryImage[]"
+                                    accept="image/*" multiple required>
                                 <label class="custom-file-label" for="exampleInputFile">Choose photo</label>
                             </div>
                             <div class="input-group-append">
@@ -89,6 +120,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -134,5 +167,21 @@
                 theme: "monokai"
             });
         })
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#add_color").click(function(){
+                $("#colors").append('<input type="text" class="form-control mt-3" id="color" name="color[]"placeholder="Enter color" >')
+
+            });
+        });
+        $(document).ready(function(){
+            $("#add_size").click(function(){
+                $("#sizes").append('<input type="text" class="form-control mt-3" id="size" name="size[]"placeholder="Enter size" >')
+
+            })
+        })
+
+        
     </script>
 @endpush

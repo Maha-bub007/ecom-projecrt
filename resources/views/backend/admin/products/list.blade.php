@@ -31,7 +31,7 @@
                                 <td>
                                     <img src="{{asset('backend/image/product/'. $product->image) }}" alt="category" height="60px" width="80px">
                                 </td>
-                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->category->name}}</td>
                                 <td>{{ $product->quantity}}</td>
                                 <td>{{ $product->buy_price }}</td>
                                 <td>{{ $product->regular_price }}</td>
