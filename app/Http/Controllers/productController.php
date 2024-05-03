@@ -72,7 +72,7 @@ class productController extends Controller
                     }
                 }
                 if (isset($request->GallaryImage)) {
-                    
+
                     foreach ($request->GallaryImage as $image) {
                         $gallaryImage = new gallaryimage();
                         $gallaryImage->peoduct_id = $product->id;
@@ -87,41 +87,12 @@ class productController extends Controller
             }
         }
     }
-    // public function productedit($id){
-    //     $productedit = productmodel::find($id);
-    //     $products= productmodel::get();
+    public function productedit($id)
+    {
 
-    //     return view ('backend/admin/products/edit',compact('productedit','products'));
-    // }
-    // public function productupdate (Request $requests, $id){
-    //     if (Auth::user()) {
-    //         if (Auth::user()->role == 1) {
-    //             $productes =productmodel::find($id);
-    //             $productes->name = $requests->name;
-    //             $productes->slug = Str::slug($requests->name);
-    //             $productes->cat_id = $requests->cat_id;
-    //             $productes->quantity = $requests->quantity;
-    //             $productes->buy_price = $requests->buy_price;
-    //             $productes->discount_price = $requests->discount_price;
-    //             $productes->regular_price = $requests->regular_price;
-    //             $productes->sqy_code = $requests->sqy_code;
-    //             $productes->short_desc = $requests->short_desc;
-    //             $productes->long_desc = $requests->long_desc;
-    //             $productes->product_policy = $requests->product_policy;
-    //             $productes->product_type = $requests->product_type;
-    //             if(isset($requests->image)){
-    //                 $imageName = rand().'product'.'.'.$requests->image->extension();
-    //                 $requests->image->move('backend/image/product',$imageName);
-    //                 $productes->image=  $imageName;
-
-    //             }
-    //             $productes->save();
-    //             return redirect()->back();
-
-
-    //         }
-    //     }
-
-    // }
-
+        $product = productmodel::where('id', $id)->with('color', 'size', 'gallaryimage')->first();
+        $products = Category::orderby('name', 'asc')->get();
+        $subproducts = subcategory::orderby('name', 'asc')->get();
+        return view('backend.admin.products.edit', compact("product", "products", "subproducts"));
+    }
 }

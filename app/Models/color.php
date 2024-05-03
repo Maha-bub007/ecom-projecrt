@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class color extends Model
 {
     use HasFactory;
+    protected $guarded =[];
+    public function productmodel(){
+        return $this->belongsTo(productmodel::class,"product_id","id");
+    } 
 }

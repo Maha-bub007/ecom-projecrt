@@ -26,6 +26,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Sub Category</label>
                         <select name="subcat_id" id="subcat_id" class="form-control">
+                            
                             @foreach ($subproducts as $subproduct)
                                 <option value="{{ $subproduct->id }}">{{ $subproduct->name}}</option>
                             @endforeach

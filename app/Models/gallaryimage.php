@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class gallaryimage extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public function productmodel(){
+        return $this->belongsTo(productmodel::class,"peoduct_id","id");
+    }
 }
