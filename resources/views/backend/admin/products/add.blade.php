@@ -41,13 +41,13 @@
                         <label for="exampleInputEmail1">Add color</label>
                         <input type="text" class="form-control" id="color" name="color[]"placeholder="Enter color" >
                     </div>
-                    <button id="add_color" class="btn btn-info">Add More Color</button>
+                    <button id="add_color" type="button" class="btn btn-info">Add More Color</button>
                     <div class="form-group" id="sizes">
                         <label for="exampleInputEmail1">Add size</label>
                         <input type="text" class="form-control" id="size" name="size[]"
                             placeholder="Enter size" >
                     </div>
-                    <button id="add_size" class="btn btn-info">Add More size</button>
+                    <button id="add_size" type="button" class="btn btn-info">Add More size</button>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Buy price</label>
                         <input type="number" class="form-control" id="name" name="buy_price"

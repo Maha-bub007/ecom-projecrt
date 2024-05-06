@@ -81,7 +81,6 @@ class categoryController extends Controller
                     }
                     $categoryupdateimage = rand() . 'categoryupdate' . '.' . $reqest->image->extension();
                     $reqest->image->move('backend/image/category', $categoryupdateimage);
-                    // $store->image->move('backend/image/category', $imageName);
                     $categoryupdate->image = $categoryupdateimage;
                 }
             }
@@ -102,7 +101,7 @@ class categoryController extends Controller
         }
     }
     public function subCategorylist(){
-        $subcategory =  subcategory::with('Category')->get();
+        $subcategory =  subcategory::with('category')->get();
         // dd($subcategory);
         return view('backend.admin.category.subcategorylist',compact('subcategory'));
     }

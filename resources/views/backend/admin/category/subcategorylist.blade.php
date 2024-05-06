@@ -21,7 +21,7 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{$subItem->name}}</td>
-                                <td>{{$subItem->Category->name}}</td>
+                                <td>{{$subItem->category->name}}</td>
                             
                                 <td>
                                     <a href="{{url('/admin/sub-category/edit/'.$subItem->id)}}" class="btn btn-success">Edit</a>

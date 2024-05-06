@@ -7,7 +7,7 @@
              </div>
              <!-- /.card-header -->
              <!-- form start -->
-             <form action="" method="post" enctype="multipart/form-data">
+             <form action="{{'/admin/product/update/'.$product->id}}" method="post" enctype="multipart/form-data">
                  @csrf
                  <div class="card-body">
                      <div class="form-group">
@@ -46,7 +46,7 @@
                          @endforeach
 
                      </div>
-                     <button id="add_color" class="btn btn-info">Add More Color</button>
+                     <button id="add_color" type="button" class="btn btn-info">Add More Color</button>
                      <div class="form-group" id="sizes">
                          <label for="exampleInputEmail1">Add size</label>
                          @foreach ($product->size as $sizes)
@@ -55,10 +55,10 @@
                          @endforeach
 
                      </div>
-                     <button id="add_size" class="btn btn-info">Add More size</button>
+                     <button id="add_size" type="button" class="btn btn-info">Add More size</button>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Buy price</label>
-                         <input type="number" class="form-control" id="name" name="buy_price"
+                         <input type="number" value="{{$product->buy_price}}" class="form-control" id="name" name="buy_price"
                              placeholder="Enter buy price" required>
                      </div>
                      <div class="form-group">
@@ -70,11 +70,6 @@
                          <label for="exampleInputEmail1">Regular price</label>
                          <input type="number" value="{{ $product->regular_price }}" class="form-control" id="name"
                              name="regular_price" placeholder="Enter regular price" required>
-                     </div>
-                     <div class="form-group">
-                         <label for="exampleInputEmail1">sqy_code</label>
-                         <input type="text" value="{{ $product->sqy_code }}" class="form-control" id="name"
-                             name="sqy_code" placeholder="Enter sku_code" required>
                      </div>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Product type</label>
@@ -98,7 +93,7 @@
                      <div class="form-group">
                          <label for="exampleInputEmail1">long description</label>
                          <textarea id="summernote1" name="long_desc"> 
-                            {{ $product->long_desc }}
+                            {{$product->long_desc}}
                       </textarea>
                      </div>
                      <div class="form-group">
