@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
         });

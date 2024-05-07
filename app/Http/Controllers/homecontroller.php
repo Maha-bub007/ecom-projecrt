@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\productmodel;
 use Illuminate\Http\Request;
 
 class homecontroller extends Controller
 {
     public function home() {
-        return \view('home.index');
+        $hotproduct = productmodel::where('product_type','hot')->orderby('id','desc')->get();
+        $newproduct = productmodel::where('product_type','new')->orderby('id','desc')->get();
+        $regularproduct = productmodel::where('product_type','regular')->orderby('id','desc')->get();
+        $discountproduct = productmodel::where('product_type','discount')->orderby('id','desc')->get();
+        return \view('home.index',compact('hotproduct','newproduct','regularproduct','discountproduct'));
     }
-    public function datilspage() {
-        return \view('home.productsDatils');
+    public function datilspage($slug) {
+        $product = productmodel::where('slug',$slug)->with('color','size','gallaryimage')->first();
+        // dd($product);
+        return \view('home.productsDatils',compact('product'));
 
     }
     public function products_shop() {

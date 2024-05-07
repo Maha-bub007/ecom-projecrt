@@ -18,7 +18,7 @@ use App\Http\Controllers\productController;
 */
 
 Route::get('/', [homecontroller::class, 'home']);
-Route::get('/products-datils', [homecontroller::class, 'datilspage']);
+Route::get('/products-datils/{slug}', [homecontroller::class, 'datilspage']);
 Route::get('/products-shop', [homecontroller::class, 'products_shop']);
 Route::get('/products-process', [homecontroller::class, 'return']);
 Route::get('/products-viewall', [homecontroller::class, 'viewall']);

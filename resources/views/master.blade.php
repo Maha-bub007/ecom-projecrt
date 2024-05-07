@@ -17,6 +17,8 @@
 	@include('include.footer')
 
     @include('include.script')
+	
+	@stack('script')
 
 
 	
