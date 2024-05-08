@@ -27,6 +27,8 @@ Route::get('/products-checkout', [homecontroller::class, 'checkout']);
 Route::get('/privace-police', [homecontroller::class, 'policy']);
 Route::get('/ceatagory-product', [homecontroller::class, 'ceatagory']);
 Route::get('/contactus', [homecontroller::class, 'contactus']);
+//add to card..
+Route::post('/product-addtocat/{id}',[homecontroller::class,'adtocart']);
 
 
 //backend routes login....

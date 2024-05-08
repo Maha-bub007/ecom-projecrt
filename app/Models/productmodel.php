@@ -29,4 +29,7 @@ class productmodel extends Model
     {
         return $this->hasMany(gallaryimage::class, "peoduct_id", "id");
     }
+    public function cart(){
+        return $this->hasMany(Cart::class,'product_id','id');
+    }
 }

@@ -35,7 +35,22 @@
                                             <del>{{ $product->regular_price }} Tk.</del>
                                         </span>
                                     </div>
+                                    {{-- <div class="product-details-select-items-wrap">
+                                        
+                                    </div>
                                     <div class="product-details-select-items-wrap">
+                                       
+                                    </div> --}}
+                                    <form action="{{url('/product-addtocat/'.$product->id)}}" method="POST">
+                                        @csrf
+                                        @foreach ($product->size as $size)
+                                        <div class="product-details-select-item-outer">
+                                            <input type="radio" name="size" value="{{ $size->name }}"
+                                                class="category-item-radio">
+                                            <label for="size"
+                                                class="category-item-label">{{ $size->name }}</label>
+                                        </div>
+                                    @endforeach
                                         @foreach ($product->color as $color)
                                             <div class="product-details-select-item-outer">
                                                 <input type="radio" name="color" id="color"
@@ -45,27 +60,15 @@
                                                 </label>
                                             </div>
                                         @endforeach
-                                    </div>
-                                    <div class="product-details-select-items-wrap">
-                                        @foreach ($product->size as $size)
-                                            <div class="product-details-select-item-outer">
-                                                <input type="radio" name="size" value="{{ $size->name }}"
-                                                    class="category-item-radio">
-                                                <label for="size"
-                                                    class="category-item-label">{{ $size->name }}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <form action="" method="POST">
                                         <div class="purchase-info-outer">
                                             <div class="product-incremnt-decrement-outer" style="display: block">
                                                 <a title="Decrement" class="decrement-btn" style="margin-top: -10px;">
-                                                    <i class="fas fa-minus"></i>
+                                                    <i class="fas fa-minus" ></i>
                                                 </a>
                                                 <input type="number" readonly name="qty" placeholder="Qty"
                                                     value="1" min="1" id="qty" style="height: 35px">
-                                                <a title="Increment" class="increment-btn" style="margin-top: -10px;">
-                                                    <i class="fas fa-plus"></i>
+                                                <a title="Increment"  class="increment-btn" style="margin-top: -10px;">
+                                                    <i class="fas fa-plus" ></i>
                                                 </a>
                                             </div>
                                             <div>
@@ -189,5 +192,27 @@
 
     <script type="text/javascript">
         new WOW().init();
+    </script>
+    <script>
+        var inputfield = document.getElementById('qty');
+        var plusbtn = document.querySelector('.increment-btn');
+        var minusbutton = document.querySelector('.decrement-btn');
+        plusbtn.addEventListener("click", function(){
+            if(inputfield.value<5){
+                inputfield.value++;
+
+
+            }
+        });
+        minusbutton.addEventListener("click", function(){
+            if(inputfield.value>1){
+                inputfield.value--;
+
+
+            }
+        });
+
+        
+           
     </script>
 @endpush
