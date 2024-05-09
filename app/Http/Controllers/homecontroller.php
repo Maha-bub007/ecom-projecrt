@@ -76,11 +76,13 @@ class homecontroller extends Controller
                 toastr()->success('Add to cart has been saved successfully!');
                 return redirect()->back();
             } else {
-                toastr()->success('Add to cart has been saved successfully!');
+                
                 return redirect('/products-checkout');
+                toastr()->success('Add to cart has been saved successfully!');
             }
-        } else if ($cartproduct != null) {
+        } elseif($cartproduct != null) {
             $cartproduct->qty = $cartproduct->qty + $request->qty;
+            $cartproduct->save();
             if ($action == 'addToCart') {
                 toastr()->success('Add to cart has been saved successfully!');
                 return redirect()->back();
@@ -88,6 +90,37 @@ class homecontroller extends Controller
                 toastr()->success('Add to cart has been saved successfully!');
                 return redirect('/products-checkout');
             }
+            
         }
     }
+    public function adtocarts(Request $request,$id){
+        $cartproduct = Cart::where('product_id', $id)->where('ip_address', $request->ip())->first();
+        $product = productmodel::where('id', $id)->first();
+        if ($cartproduct == null) {
+            $cart = new Cart();
+            $cart->color = $request->color;
+            $cart->size = $request->size;
+            $cart->product_id = $id;
+            $cart->ip_address = $request->ip();
+            $cart->qty = 1;
+            if ($product->discount_price == null) {
+                $cart->price = $product->regular_price;
+            } elseif ($product->discount_price != null) {
+                $cart->price = $product->discount_price;
+            }
+            $cart->save();
+            toastr()->success('Add to cart has been saved successfully!');
+            return redirect()->back();
+
+    }
+    elseif($cartproduct != null) {
+        $cartproduct->qty = $cartproduct->qty + 1;
+        $cartproduct->save();
+            toastr()->success('Add to cart has been saved successfully!');
+            return redirect()->back();
+        
+        
+    }
+}
+
 }

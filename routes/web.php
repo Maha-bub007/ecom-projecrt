@@ -29,6 +29,7 @@ Route::get('/ceatagory-product', [homecontroller::class, 'ceatagory']);
 Route::get('/contactus', [homecontroller::class, 'contactus']);
 //add to card..
 Route::post('/product-addtocat/{id}',[homecontroller::class,'adtocart']);
+Route::get('/product-addtocats/{id}',[homecontroller::class,'adtocarts']);
 
 
 //backend routes login....
