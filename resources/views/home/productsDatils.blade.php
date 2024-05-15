@@ -48,7 +48,7 @@
                                             <input type="radio" name="size" value="{{ $size->name }}"
                                                 class="category-item-radio">
                                             <label for="size"
-                                                class="category-item-label">{{ $size->name }}</label>
+                                                class="category-item-label">{{ $size->name??'N.A' }}</label>
                                         </div>
                                     @endforeach
                                         @foreach ($product->color as $color)
@@ -56,7 +56,7 @@
                                                 <input type="radio" name="color" id="color"
                                                     value="{{ $color->color }}" class="category-item-radio">
                                                 <label for="color" class="category-item-label">
-                                                    {{ $color->color }}
+                                                    {{ $color->color ?? 'N.A'}}
                                                 </label>
                                             </div>
                                         @endforeach

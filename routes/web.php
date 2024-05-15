@@ -30,6 +30,8 @@ Route::get('/contactus', [homecontroller::class, 'contactus']);
 //add to card..
 Route::post('/product-addtocat/{id}',[homecontroller::class,'adtocart']);
 Route::get('/product-addtocats/{id}',[homecontroller::class,'adtocarts']);
+Route::get('/product-addtocats/delete/{id}',[homecontroller::class,'adtocartsdelete']);
+
 
 
 //backend routes login....

@@ -21,13 +21,13 @@
                                             placeholder="Enter Full Address"></textarea>
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                        <div style="background: lightgrey;padding: 10px;margin-bottom: 10px;">
-                                            <input type="radio" id="inside_dhaka" name="area" value="80"/>
+                                        <div style="background:  lightgrey;padding: 10px;margin-bottom: 10px;" onclick="indhaka()">
+                                            <input type="radio" id="inside_dhaka"  name="area" value="80"/>
                                             <label for="inside_dhaka"
                                                 style="font-size: 18px;font-weight: 600;color: #000;">Inside Dhaka (80
                                                 Tk.)</label>
                                         </div>
-                                        <div style="background: lightgrey;padding: 10px;">
+                                        <div style="background: lightgrey;padding: 10px;" onclick="outdhaka()">
                                             <input type="radio" id="outside_dhaka" name="area" value="150"/>
                                             <label for="outside_dhaka"
                                                 style="font-size: 18px;font-weight: 600;color: #000;">Outside Dhaka (150
@@ -40,57 +40,63 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout-items-wrapper">
-                            <div class="checkout-item-outer">
+                            @foreach ($cartshow as $data)
+                                <div class="checkout-item-outer">
                                 <div class="checkout-item-left">
                                     <div class="checkout-item-image">
-                                        <img src="{{asset('frontend/assets/images/product.png')}}" alt="Image"/>
+                                        <img src="{{asset('backend/image/product/'.$data->product->image)}}" alt="Image"/>
                                     </div>
                                     <div class="checkout-item-info">
                                         <h6 class="checkout-item-name">
-                                            Test Product
+                                            {{$data->product->name}}
                                         </h6>
                                         <p class="checkout-item-price">
-                                            300 Tk.
+                                           {{$data->price}}
                                         </p>
                                         <span class="checkout-item-count">
-                                            1 item
+                                            {{$data->qty}}
                                         </span>
                                         <br />
                                         <span class="checkout-item-count">
-                                            Size:                                                 
+                                         Size:   {{$data->size}}                                               
                                         </span>                                                
                                         <span class="checkout-item-count">
-                                            Color: 
+                                            Color: {{$data->color}}
                                         </span>
-                                        <div class="checkout-product-incre-decre">
-                                            <button type="button" title="Decrement" class="qty-decrement-btn">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <input type="number" readonly name="" placeholder="Qty" min="1" style="height: 35px;" value="1">
-                                            <button type="button" title="Increment" class="qty-increment-btn">
-                                                <i class="fas fa-plus"></i>
-                                            </button>                                                
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="checkout-item-right">
-                                    <a href="#" class="delete-btn">
+                                    <a href="{{url('/product-addtocats/delete/'.$data->id)}}" class="delete-btn">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </div>
                             </div>
+                            @endforeach
+                            @php
+                                $subtotal = 0;
+                            @endphp
+                            @foreach ($cartshow as $cart)
+                            @php
+                                $subtotal = $subtotal + $cart->price * $cart->qty;
+                            @endphp
+                                
+                            @endforeach
+                            
                             <div class="sub-total-wrap">
                                 <div class="sub-total-item">
                                      <strong>Sub Total</strong>
-                                    <strong id="subTotal">৳ 300</strong>
+                                    <strong id="subTotal">৳ {{$subtotal}}</strong>
+                                    <input type ="hidden" id="stotal" name ="sototal" value="{{$subtotal}}">
                                 </div>
                                 <div class="sub-total-item">
                                     <strong>Delivery charge</strong>
-                                    <strong id="deliveryCharge">৳ 80</strong>
+                                    <strong id="deliveryCharge">৳ 0</strong>
+                                    
                                 </div>
                                 <div class="sub-total-item grand-total">
                                      <strong>Grand Total</strong>
-                                     <strong id="grandTotal">৳ 380</strong>
+                                     <strong id="grandTotal">৳ {{$subtotal}}</strong>
                                 </div>
                             </div>
                             <div class="payment-item-outer">
@@ -120,3 +126,37 @@
     </section>
 </main>
 @endsection;
+@push('script')
+<script>
+    function indhaka(){
+        var dhaka = parseFloat(document.getElementById('inside_dhaka').value);
+        var charge =document.getElementById('deliveryCharge').innerHTML ='৳'+ dhaka;
+        var subtotal = parseFloat(document.getElementById('stotal').value); 
+        var grandTotal = document.getElementById('grandTotal');
+        grandTotal.innerHTML = dhaka + subtotal;
+
+       
+
+    }
+    function outdhaka(){
+        var outdhaka =parseFloat(document.getElementById('outside_dhaka').value);
+        var charge =document.getElementById('deliveryCharge').innerHTML ='৳'+ outdhaka;
+        var subtotal = parseFloat(document.getElementById('stotal').value); 
+        var grandTotal = document.getElementById('grandTotal');
+        grandTotal.innerHTML = outdhaka + subtotal;
+       
+
+    }
+   
+        
+        
+        
+    
+    
+    
+       
+    
+</script>
+
+    
+@endpush

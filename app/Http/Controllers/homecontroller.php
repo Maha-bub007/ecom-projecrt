@@ -122,5 +122,11 @@ class homecontroller extends Controller
         
     }
 }
+public function adtocartsdelete($id){
+    $cart = Cart::find($id);
+    $cart->delete();
+    return redirect()->back();
+
+}
 
 }
