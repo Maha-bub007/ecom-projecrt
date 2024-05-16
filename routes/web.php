@@ -27,10 +27,16 @@ Route::get('/products-checkout', [homecontroller::class, 'checkout']);
 Route::get('/privace-police', [homecontroller::class, 'policy']);
 Route::get('/ceatagory-product', [homecontroller::class, 'ceatagory']);
 Route::get('/contactus', [homecontroller::class, 'contactus']);
+
 //add to card..
 Route::post('/product-addtocat/{id}',[homecontroller::class,'adtocart']);
 Route::get('/product-addtocats/{id}',[homecontroller::class,'adtocarts']);
 Route::get('/product-addtocats/delete/{id}',[homecontroller::class,'adtocartsdelete']);
+
+
+//order route......
+Route::post('comfirm-order',[homecontroller::class,'orderconfirm']);
+Route::get('/order-successful/{invoiceId}', [homecontroller::class, 'ordersuccessful']);
 
 
 

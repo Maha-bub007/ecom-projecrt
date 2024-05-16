@@ -35,12 +35,6 @@
                                             <del>{{ $product->regular_price }} Tk.</del>
                                         </span>
                                     </div>
-                                    {{-- <div class="product-details-select-items-wrap">
-                                        
-                                    </div>
-                                    <div class="product-details-select-items-wrap">
-                                       
-                                    </div> --}}
                                     <form action="{{url('/product-addtocat/'.$product->id)}}" method="POST">
                                         @csrf
                                         @foreach ($product->size as $size)

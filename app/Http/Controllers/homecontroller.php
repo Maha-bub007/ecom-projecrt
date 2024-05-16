@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderDeatils;
 use App\Models\productmodel;
 use Illuminate\Http\Request;
 
@@ -19,7 +22,6 @@ class homecontroller extends Controller
     public function datilspage($slug)
     {
         $product = productmodel::where('slug', $slug)->with('color', 'size', 'gallaryimage')->first();
-        // dd($product);
         return \view('home.productsDatils', compact('product'));
     }
     public function products_shop()
@@ -50,6 +52,10 @@ class homecontroller extends Controller
     {
         return \view('home.ceatagory');
     }
+    public function ordersuccessful($invoiceId){
+        return view('home.thankyou',compact('invoiceId'));
+
+    }
     public function contactus()
     {
         return \view('home.contactus');
@@ -76,11 +82,11 @@ class homecontroller extends Controller
                 toastr()->success('Add to cart has been saved successfully!');
                 return redirect()->back();
             } else {
-                
+
                 return redirect('/products-checkout');
                 toastr()->success('Add to cart has been saved successfully!');
             }
-        } elseif($cartproduct != null) {
+        } elseif ($cartproduct != null) {
             $cartproduct->qty = $cartproduct->qty + $request->qty;
             $cartproduct->save();
             if ($action == 'addToCart') {
@@ -90,10 +96,10 @@ class homecontroller extends Controller
                 toastr()->success('Add to cart has been saved successfully!');
                 return redirect('/products-checkout');
             }
-            
         }
     }
-    public function adtocarts(Request $request,$id){
+    public function adtocarts(Request $request, $id)
+    {
         $cartproduct = Cart::where('product_id', $id)->where('ip_address', $request->ip())->first();
         $product = productmodel::where('id', $id)->first();
         if ($cartproduct == null) {
@@ -111,22 +117,59 @@ class homecontroller extends Controller
             $cart->save();
             toastr()->success('Add to cart has been saved successfully!');
             return redirect()->back();
-
-    }
-    elseif($cartproduct != null) {
-        $cartproduct->qty = $cartproduct->qty + 1;
-        $cartproduct->save();
+        } elseif ($cartproduct != null) {
+            $cartproduct->qty = $cartproduct->qty + 1;
+            $cartproduct->save();
             toastr()->success('Add to cart has been saved successfully!');
             return redirect()->back();
-        
+        }
+    }
+    public function adtocartsdelete($id)
+    {
+        $cart = Cart::find($id);
+        $cart->delete();
+        return redirect()->back();
+    }
+    public function orderconfirm(OrderRequest $request)
+    {
+        $order = new Order();
+        $order->name = $request->name;
+        $order->phone = $request->phone;
+        $order->area = $request->area;
+        $order->address = $request->address;
+        $order->price = $request->price;
+        $previousorder = Cart::orderBy('id', 'desc')->first();
+        if ($previousorder != null) {
+            $invoice = 'Xcellence Find - ' . $previousorder->id+1;
+            $order->InvoiceId =  $invoice ;
+        }
+        if ($previousorder == null) {
+            $order->InvoiceId = 'Xcellence Find - 1';
+        }
+        $order->save();
+        $cartdeatils = Cart::with('product')->where('ip_address',$request->ip())->get();
+        if($cartdeatils) 
+        {
+            foreach($cartdeatils as $data){
+                $orderdatils = new OrderDeatils();
+                $orderdatils->order_id = $order->id;
+                $orderdatils->product_id = $data->product->id;
+                $orderdatils->price =$data->price;
+                $orderdatils->qty =$data->qty;
+                $orderdatils->size =$data->size;
+                $orderdatils->color =$data->color;
+                $orderdatils->OrderProductImage = $data->product->image;
+                $orderdatils->save();
+                $data->delete();
+                return redirect('order-successful/'.$invoice);                                         
+               
+            }
+           
+        }
+        else{
+            toastr()->warning('Your order can not  successfull!');
+            return redirect()->back();
+        }
         
     }
-}
-public function adtocartsdelete($id){
-    $cart = Cart::find($id);
-    $cart->delete();
-    return redirect()->back();
-
-}
-
 }

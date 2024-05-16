@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->string('size')->nullable();
             $table->string('color')->nullable();
-            
+            $table->string('OrderProductImage');
             $table->timestamps();
         });
     }

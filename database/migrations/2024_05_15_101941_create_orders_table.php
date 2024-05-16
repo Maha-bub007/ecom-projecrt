@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('area');
             $table->integer('price');
             $table->string('status')->default('pending');
-            $table->string('currier_name');
-            $table->string('customer_type');
+            $table->string('currier_name')->nullable();
+            $table->string('customer_type')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -3,7 +3,8 @@
 <main>
     <section class="checkout-section">
         <div class="container">
-            <form action="" method="post" class="form-group billing-address-form" enctype="multipart/form-data">
+            <form action="{{url('comfirm-order')}}" method="post" class="form-group billing-address-form" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout-wrapper">
@@ -97,6 +98,7 @@
                                 <div class="sub-total-item grand-total">
                                      <strong>Grand Total</strong>
                                      <strong id="grandTotal">৳ {{$subtotal}}</strong>
+                                     <input type ="hidden" name ="price" value="{{$subtotal}}">
                                 </div>
                             </div>
                             <div class="payment-item-outer">
